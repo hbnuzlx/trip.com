@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>欢迎登陆...</title>
+    <script type="text/javascript">
+//        $("input #submit").click(function(){
+//            alert('OK');
+//        });
+//        var btn = document.getElementById("submit");
+//        btn.onclick=function(){
+//            alert("ok");
+//        }
+    </script>
+</head>
+<body>
+    <div>
+    <form method="post" action="__CONTROLLER__/login">
+        <h3>用户登录</h3>
+        <input type="text" name="user_name" id="user" /><br/><br/>
+        <input type="password" name="password" id="pwd" /><br/><br/>
+        <input type="button" id="submit" value="登 录" />
+        <input type="button" id="regist" value="注 册" />
+    </form>
+    </div>
+    <a href="__MODULE__/User/quit">退出登录</a>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //$("input[name='user_name']");
+            //alert(username);
+            $("#submit").click(function(){
+                var username = document.getElementById('user').value;
+                var password = document.getElementById('pwd').value;
+                if(username.match(/^\s*$/) !=null ){
+                    alert("用户名未填写！");
+                    return false;
+                }else if(password.match(/^\s*$/) != null){
+                    alert("用户名未填写！");
+                    return false;
+                }else{
+//                    $.post({
+//                        url:"/home/index/login",
+//                        //data:
+//                    });
+
+                    $.ajax({
+                        url: "/trip.com/index.php/Home/Index/login",    //请求的url地址
+                        dataType: "json",   //返回格式为json
+                        async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                        data: { "user_name": username,"password":password },    //参数值
+                        type: "post",   //请求方式
+                        beforeSend: function() {
+                            //请求前的处理
+                        },
+                        success: function(req) {
+                            //请求成功时处理
+                            if(req.status == true){
+                                alert(req.msg);
+                                //window.location.reload(true);
+                                window.location.href="__MODULE__/index/index";
+                            }else{
+                                alert(req.msg);
+                                return false;
+                            }
+                        },
+//                        complete: function() {
+//                            //请求完成的处理
+//                        },
+                        error: function() {
+                            //请求出错处理
+                        }
+                    });
+//                    alert(username);
+//                    return false;
+                }
+            });
+
+            $("#regist").click(function(){
+                window.location.href="registForm";
+            });
+        })
+    </script>
+</body>
+</html>

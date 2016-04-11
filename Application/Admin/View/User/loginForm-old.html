@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>欢迎登陆网站后台</title>
+        <!--<link rel="stylesheet" href="__PUBLIC__/Bootstrap/css/bootstrap.min.css"/>-->
+        <script type="text/javascript" src="__PUBLIC__/js/jquery-2.1.1.min.js"></script>
+    </head>
+    <body>
+    <div class="table-responsive container" style="width:400px;margin-left:550px">
+        <form method="post" name="loginForm">
+            用户名：<input type="text" class="form-control" name="user_name" placeholder="请输入新用户名" /><br/><br/>
+            密码：<input id="password" type="password" class="form-control" name="password" placeholder="请输入密码" /><br/><br/>
+                <input type="button" id="login" class="btn btn-success" value="登 录" />&nbsp;&nbsp;
+                <input id="reset" type="reset" class="btn btn-default" value="重 置" />
+        </form>
+    </div>
+    <script>
+        $(function(){
+            $("#login").click(function(){
+            var username = document.loginForm.user_name.value;
+            var password = document.loginForm.password.value;
+//                alert("MMMMMMMMMMMM");return false;
+                if(username.match(/^\s*$/) != null){
+                    alert("用户名未填写！");
+                    return false;
+                }
+                if(password.match("/^\s*$/") ){
+                    alert("密码未填写！");
+                    return false;
+                }
+                //ajax 请求登录
+                $.ajax({
+                    url: "/trip.com/index.php/Admin/user/login",    //请求的url地址
+                    dataType: "json",   //返回格式为json
+                    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                    data: { "user_name": username,"password":password },    //参数值
+                    type: "post",   //请求方式
+                    success: function(req) {
+                        //请求成功时处理
+                        if(req.status == true){
+                            alert(req.msg);
+                            //window.location.reload(true);
+                            window.location.href="__MODULE__/index/index";
+                        }else{
+                            alert(req.msg);
+                            return false;
+                        }
+                    },
+//                        complete: function() {
+//                            //请求完成的处理
+//                        },
+                    error: function() {
+                        //请求出错处理
+                    }
+                });
+
+            });
+
+        })
+    </script>
+    </body>
+</html>

@@ -1,0 +1,236 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<title>欢迎访问张家口旅游网...</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="网站模板,登录页面模板,登陆页面模板,登录界面模板,登录页面表单验证">
+<meta name="description" content="JS代码网提供大量的登录页面模板的学习和下载">
+<!--<link rel="shortcut icon" href="http://photo.66diqiu.com/uploads/32818/favicon.png" mce_href="http://photo.66diqiu.com/uploads/32818/favicon.png" type="image/x-icon" />-->
+<link type="text/css" href="__PUBLIC__/themes/css/v3/reset.css" rel="stylesheet">
+<link type="text/css" href="__PUBLIC__/themes/css/v3/public.css" rel="stylesheet">
+<link type="text/css" href="__PUBLIC__/themes/css/v3/register.css" rel="stylesheet">
+<link rel="shortcut icon" href="__PUBLIC__/themes/images/v3/favicon.ico" />
+<script src="__PUBLIC__/themes/js/jquery.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/themes/js/jquery.form.js" type="text/javascript"></script>
+<script src="__PUBLIC__/themes/js/json.parse.js" type="text/javascript"></script>
+<style>
+	.loginad{
+		width:580px;
+		height:595px;
+		position: absolute;
+	}
+	.loginad .loginadtitle{
+		width:100%;
+		text-align:center;
+		line-height:60px;
+		font-size:32px;
+		font-family:"幼圆",Microsoft Yahei;
+		margin-top:70px;
+		color:#FFF;
+	}
+	.loginad .loginaddes{
+		line-height:30px;
+		color:#FFF;
+		font-family:Microsoft Yahei;
+		font-size:16px;
+		text-align:center
+	}
+	.loginad .loginadimg{
+		width:100%; 
+		height:320px;
+		margin-top:-15px;
+		
+	}
+	.loginad .loginadbtn{ width:100%; height:40px; margin-top:30px; }
+	.loginad .loginadbtn a{ display:block; width:190px; height:40px; margin:0 auto; text-align:center; line-height:40px; font-size:16px; color:#009fe3; font-weight:bold; background:url(/__PUBLIC__/themes/images/v3/btn.png) center center no-repeat;
+		-moz-border-radius:6px;
+		-khtml-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+	}
+</style>
+</head>
+<body>
+	<div id="header">
+		<div class="header">
+			<h1 class="png_bg">JS代码网</h1>
+			<a href="#">返回主页</a>
+		</div>
+	</div>	
+	
+	<div class="login_bg">
+		<div class="form">
+        	<div class="loginad">
+            	<div class="loginadtitle">张家口自己的旅游网全新发布了</div>
+                <div class="loginaddes">实现全市范围内旅游景点、酒店信息检索，以及在线预定功能</div>
+                <div class="loginadbtn"><a  href="docs/api/id/59" target="_blank"></a></div>
+                <div class="loginadimg" style="background:url('__PUBLIC__/themes/images/v3/olympic.jpg') center center no-repeat"></div>
+            </div>
+			
+			<form name="loginForm" id="login_form" method="post" action="login/ldo">
+				<h2>登录张家口旅游网</h2>
+				<div class="div_user"><span></span><input  name="user_name" id="user_name" class="username" type="text" placeholder="用户名" /></div>
+				<div class="div_pw"><span></span><input name="password" class="pw" type="password" placeholder="密码" /></div>
+				<div class="div_box">
+					<label><input type="checkbox" class="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下次自动登录</label>
+					<a class="forgetPw" href="forget">忘记密码？</a>
+				</div>
+				<div><input class="login_btn" id="loginBtn" type="button" value="登录" /></div>
+                <div style="line-height:30px; text-indent:5px;color:#F30" id="loginTips">&nbsp;</div>
+				<h4>可以使用下面方式登录<a href="registForm">立即注册</a></h4>
+				<a href="#"><img height=30px style="margin:0px 15px 0px 5px" src="__PUBLIC__/themes/images/oauth/qq.png" alt="QQ登录" /><img height=30px src="__PUBLIC__/themes/images/oauth/weixin.jpg" alt="微信登录" /></a>
+			</form>
+		</div>
+	</div>
+	
+	
+<!-- footer start -->
+<div id="footer" class="clear">
+    <h1 class="png_bg">JS代码网</h1>
+    <div class="friendLink clear">
+        <a  href="#" target="_blank" title="隐私政策" rel="nofollow">隐私政策</a>
+        <a href="#" target="_blank" rel="nofollow">服务条款</a>
+        <a href="#" target="_blank" rel="nofollow">关于我们</a>
+        <a href="#" target="_blank" rel="nofollow">联系我们</a>
+        <a href="#" target="_blank" rel="nofollow">友情链接</a>
+    </div>
+    <p>张家口旅游有限公司©版权所有 冀ICP备140068998</p>
+    <div class="weixin">
+        <img src="__PUBLIC__/themes/images/v3/zjk-tour.png" alt="扫一扫关注我" />
+        <h3>关注张家口旅游</h3>
+    </div>
+</div>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F5d12e2b4eed3b554ae941c0ac43c330a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- footer end -->
+<script type="text/javascript">
+	var refer='';
+	$(document).ready(function(){
+		$("#loginBtn").click(function(){
+//			$("#loginBtn").val('登录中...').attr("disabled","disabled");
+			var user_name = $(".username").val();
+			var password = $(".pw").val();
+				user_name = $.trim(user_name);
+				password = $.trim(password);
+			$("#loginTips").css({display:"none"});	
+			
+			if(user_name.length <1){
+				//$("#username_tips").html("请输入正确的用户名!").css({display:"block"});
+				$("#loginTips").html("请输入用户名!").fadeIn();
+				$("#loginBtn").val('登录').removeAttr('disabled');
+				return false;
+			}
+			if(password == ''){
+				$("#loginTips").html("请输入密码!").fadeIn();
+				$("#loginBtn").val('登录').removeAttr('disabled');
+				return false;
+			}else
+			if(password.length>0 && password.length<6){
+				$("#loginTips").html("密码格式不正确!").fadeIn();
+				$("#loginBtn").val('登录').removeAttr('disabled');
+				return false;
+			}
+			
+//			$("#login_form").ajaxSubmit(function(e){
+//				var obj  = json_parse(e);
+//				var code = obj.code;
+//				if(code == '1')
+//				{
+//					//sycSiteLogin();
+//					if(refer){
+//						window.location.href = refer;
+//					}else{
+//						window.location.href = 'my';
+//					}
+//
+//				}else if(code == '-1'){
+//					$("#loginTips").html(obj.info).fadeIn();
+//					$("#loginBtn").val('登录').removeAttr('disabled');
+//					return false;
+//				}else if(code == '-2'){
+//					$("#loginTips").html(obj.info).fadeIn();
+//					$("#loginBtn").val('登录').removeAttr('disabled');
+//					return false;
+//				}else if(code == '-4'){
+//					$("#loginTips").html(obj.info).fadeIn();
+//					$("#loginBtn").val('登录').removeAttr('disabled');
+//					return false;
+//				}else{
+//					$("#loginTips").html(obj.info).fadeIn();
+//					$("#loginBtn").val('登录').removeAttr('disabled');
+//					return false;
+//				}
+//
+//			})
+
+			//我的------------------------
+			$.ajax({
+				url: "/trip.com/index.php/Home/Index/login",    //请求的url地址
+				dataType: "json",   //返回格式为json
+				async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+				data: { "user_name": user_name,"password":password },    //参数值
+				type: "post",   //请求方式
+				beforeSend: function() {
+					//请求前的处理
+				},
+				success: function(req) {
+					//请求成功时处理
+					if(req.status == true){
+						alert(req.msg);
+						//window.location.reload(true);
+						window.location.href="__MODULE__/index/index";
+					}else{
+						alert(req.msg);
+						return false;
+					}
+				},
+//                        complete: function() {
+//                            //请求完成的处理
+//                        },
+				error: function() {
+					//请求出错处理
+				}
+			});
+			//----------------------------我的
+
+		})		
+	})
+	
+	function sycSiteLogin(){
+		/* $.get('login/syc',function(e){
+			
+		}) */
+	}
+	
+	//bind keyCode=13 Event
+	$(function(){
+		document.onkeydown = function(e){ 
+		    var ev = document.all ? window.event : e;
+		    if(ev.keyCode==13) {
+
+		    	$("#loginBtn").click();
+
+		     }
+		}
+	}); 
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
