@@ -99,7 +99,7 @@
 
             <h3 class="page-title">
 
-                景点管理 <small>套餐列表</small>
+                酒店管理 <small>套餐列表</small>
 
             </h3>
 
@@ -109,7 +109,7 @@
 
                     <i class="icon-bookmark-empty"></i>
 
-                    <a href="__CONTROLLER__/index">景点管理</a>
+                    <a href="__CONTROLLER__/index">酒店管理</a>
 
                     <i class="icon-angle-right"></i>
 
@@ -117,7 +117,7 @@
 
                 <li>
 
-                    <a href="#">{$attrName.attr_name}</a>
+                    <a href="#">{$hotel.hotel_name}</a>
 
                     <i class="icon-angle-right"></i>
 
@@ -148,7 +148,7 @@
 
     <div class="portlet box green">
         <div class="portlet-title">
-            <div class="caption"><i class="icon-globe"></i>用户信息列表</div>
+            <div class="caption"><i class="icon-globe"></i>酒店套餐列表</div>
         </div>
         <div class="portlet-body">
             <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
@@ -158,7 +158,6 @@
                     <th>套餐名</th>
                     <th class="hidden-480">套餐价格</th>
                     <th class="hidden-480">套餐销量</th>
-                    <th class="hidden-480">套餐状态</th>
                     <th class="hidden-480">套餐内容</th>
                     <th class="hidden-480">操 作</th>
 
@@ -170,17 +169,16 @@
                         <!--<td class="hidden-480" colspan="6"><h4>暂无套餐</h4></td>-->
                     <!--</tr>-->
                     <!--<else />-->
-                    <foreach name="combos" item="combo">
+                    <foreach name="hotelDetail" item="hotelDetail">
                         <tr>
-                            <td>{$attrName.attr_id}-{$combo.id}</td>
-                            <td>{$combo.combo_name}</td>
-                            <td class="hidden-480">{$combo.attr_price}</td>
-                            <td class="hidden-480">{$combo.attr_sale}</td>
-                            <td class="hidden-480">{$states[$combo['combo_state']]}</td>
-                            <td class="hidden-480">{$combo.attr_con||substr=###,0,31}...</td>
+                            <td>{$hotel.hotel_id}-{$hotelDetail.hotel_detail_id}</td>
+                            <td>{$hotelDetail.hotel_option}</td>
+                            <td class="hidden-480">{$hotelDetail.hotel_price}.00元</td>
+                            <td class="hidden-480">{$hotelDetail.hotel_sale}</td>
+                            <td class="hidden-480">{$hotel.hotel_des}</td>
                             <td class="hidden-480">
-                                <a class="btn green" href="__CONTROLLER__/detailEditForm/id/{$combo.id}">修改</a>
-                                <a class="btn purple" href="__CONTROLLER__/attrDetailDel/id/{$combo.id}">删除</a>
+                                <a class="btn green" href="__CONTROLLER__/detailEditForm/id/{$hotelDetail.id}">修改</a>
+                                <a class="btn purple" href="__CONTROLLER__/attrDetailDel/id/{$hotelDetail.id}">删除</a>
                                 <a class="btn blue" href="__CONTROLLER__/detailAddForm/id/{$attrName.attr_id}">添加套餐</a>
                             </td>
                         </tr>
