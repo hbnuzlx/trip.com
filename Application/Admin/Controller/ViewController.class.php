@@ -34,7 +34,7 @@ class ViewController extends Controller{
     }
 
     /**
-     * 显示添加景点信息
+     * 添加景点信息
      */
     public function viewAddForm(){
         $this->display("addform");

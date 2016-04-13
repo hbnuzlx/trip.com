@@ -1,0 +1,250 @@
+<extend name="Public:layout" />
+<block name="main-content">
+
+    <!-- BEGIN PAGE CONTAINER-->
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->
+
+                <h3 class="page-title">
+
+                    酒店管理
+
+                    <small>修改酒店图片</small>
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-bookmark-empty"></i>
+
+                        <a href="index.html">酒店管理</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="__CONTROLLER__/index">{$info.hotel_name}</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">修改图片</a>
+
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+
+                <div class="portlet box blue tabbable">
+
+                    <div class="portlet-title">
+
+                        <div class="caption">
+
+                            <i class="icon-reorder"></i>
+
+                            <span class="hidden-480">酒店图片</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body form">
+
+                        <div class="tabbable portlet-tabs">
+                                <br/><br/><br/><br/>
+
+                            <div class="tab-content">
+
+                                <div class="tab-pane active" id="portlet_tab1">
+
+                                    <!-- BEGIN FORM-->
+
+                                    <form action="__CONTROLLER__/picAdd" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                        <input type="hidden" name="attr_id" value="{$info.attr_id}" />
+
+                                        <!--酒店名称-->
+                                        <div class="control-group">
+
+                                            <label class="control-label">酒店名称：</label>
+
+                                            <div class="controls">
+
+                                                <input type="text" name="attr_name" disabled value="{$info.hotel_name}" class="m-wrap large" />
+
+                                            </div>
+
+                                        </div>
+
+                                        <!--原有图片-->
+                                        <foreach name="pics" item="pic">
+
+                                        <div style="border: 1px solid #ccc;display: inline-block;padding:10px;margin-right:10px;" class="control-group">
+
+                                            <img style="margin-bottom:10px;" width="200px" src="__PUBLIC__/Uploads/{$pic.pic_path}/{$pic.pic_name}" /><br/>
+
+                                            <a href="__CONTROLLER__/picDel/pic_id/{$pic.hotel_pic_id}" class="btn red"> 删 除 </a>
+
+                                        </div>
+
+                                        </foreach>
+
+                                        <!--图片上传-->
+                                        <div class="control-group">
+
+                                            <label class="control-label">图片上传：</label>
+                                            <div class="controls">
+                                                <input class="m-wrap large" name="pic" type="file" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions">
+
+                                            <button type="submit" class="btn blue"><i class="icon-ok"></i> 保 存 </button>&nbsp;&nbsp;
+
+                                            <button type="reset" class="btn green"><i class="icon-reply"></i> 重 置 </button>
+
+                                        </div>
+
+                                    </form>
+
+                                    <!-- END FORM-->
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- END SAMPLE FORM PORTLET-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTENT-->
+
+    </div>
+
+
+</block>
