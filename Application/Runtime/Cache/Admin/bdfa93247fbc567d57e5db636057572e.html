@@ -175,9 +175,9 @@
                             <td class="hidden-480"><?php echo ($hotelDetail["hotel_sale"]); ?></td>
                             <td class="hidden-480"><?php echo ($hotel["hotel_des"]); ?></td>
                             <td class="hidden-480">
-                                <a class="btn green" href="/zjktrip.com/index.php/Admin/Hotel/detailEditForm/id/<?php echo ($hotelDetail["id"]); ?>">修改</a>
-                                <a class="btn purple" href="/zjktrip.com/index.php/Admin/Hotel/attrDetailDel/id/<?php echo ($hotelDetail["id"]); ?>">删除</a>
-                                <a class="btn blue" href="/zjktrip.com/index.php/Admin/Hotel/detailAddForm/id/<?php echo ($attrName["attr_id"]); ?>">添加套餐</a>
+                                <a class="btn green" href="/zjktrip.com/index.php/Admin/Hotel/hotelDetailEditForm/id/<?php echo ($hotelDetail["hotel_detail_id"]); ?>">修改</a>
+                                <a class="btn purple" href="/zjktrip.com/index.php/Admin/Hotel/hotelDetailDel/id/<?php echo ($hotelDetail["hotel_detail_id"]); ?>">删除</a>
+                                <a class="btn blue" href="/zjktrip.com/index.php/Admin/Hotel/hotelDetailAddForm/id/<?php echo ($hotel["hotel_id"]); ?>">添加套餐</a>
                             </td>
                         </tr><?php endforeach; endif; ?>
                 <!--<?php endif; ?>-->

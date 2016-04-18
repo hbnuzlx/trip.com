@@ -103,7 +103,7 @@ class HotelController extends Controller {
         $hotel_id = I("get.id");
         $pic = M("hotel_pics");
         $info = M("hotel")->where("hotel_id=".$hotel_id)->find();
-        $pictures = $pic->where("attr_id=".$hotel_id)->select();
+        $pictures = $pic->where("hotel_id=".$hotel_id)->select();
         $this->assign("info",$info);
         $this->assign("pics",$pictures);
         $this->display("picEditForm");
@@ -111,30 +111,23 @@ class HotelController extends Controller {
     //删除图片
     public function picDel(){
         $picid = I("get.pic_id");
-        $picInfo = M("attr_pics")->where("pic_id=".$picid)->find();
-        $file = "./Public/Uploads/{$picInfo['pic_path']}/{$picInfo['pic_name']}";
-//        echo $file;
-////        @unlink($file);
-//        echo "<pre>";
-//        if(@unlink($file)){
-//            var_dump($picInfo);exit;
-//        }else{
-//            echo "删除失败！";exit;
-//        }
-        $res = M("attr_pics")->where("pic_id=".$picid)->delete();
+        $picInfo = M("hotel_pics")->where("hotel_pic_id=".$picid)->find();
+        $file = "./Public/Uploads/Hotel/{$picInfo['pic_path']}/{$picInfo['pic_name']}";
+        $res = M("hotel_pics")->where("hotel_pic_id=".$picid)->delete();
         if($res){//数据库删除图片记录成功后  删除服务器端文件
             @unlink($file);
 //            redirect("/trip.com/index.php/admin/view/picEditForm/id/{$picInfo['attr_id']}");
-            redirect("index");
+            redirect(__CONTROLLER__."/picEditForm/id/".$picInfo["hotel_id"]);
         }
     }
+
     //添加图片
     public  function picAdd(){
-        $attr_id = I("post.attr_id");
+        $hotel_id = I("post.hotel_id");
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     3145728 ;// 设置附件上传大小3MB
         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath  =     './Public/Uploads/Hotel'; // 设置附件上传根目录
+        $upload->rootPath  =     './Public/Uploads/Hotel/'; // 设置附件上传根目录
 //        $upload->savePath  =     "/".date("Ymd"); // 设置附件上传（子）目录
         $upload->saveName  =     date("Ymd").rand(1000,9999); // 设置附件上传（子）目录
         $upload->autoSub = true;
@@ -144,16 +137,80 @@ class HotelController extends Controller {
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
         }else{// 上传成功
-            $pic = M("attr_pics");
+            $pic = M("hotel_pics");
             $newPic = array();
             $newPic["pic_name"] = $info["pic"]["savename"];
             $newPic["pic_path"] = $info["pic"]["savepath"];
-            $newPic["attr_id"] = $attr_id;
+            $newPic["hotel_id"] = $hotel_id;
             $result = $pic->add($newPic);
             if($result){
-                redirect("picEditForm/id/{$attr_id}");
+                redirect("picEditForm/id/{$hotel_id}");
             }
 
+        }
+    }
+
+    /**
+     * 酒店套餐操作
+     */
+
+    /**
+     * 酒店套餐添加
+     */
+    public function hotelDetailAddForm(){
+        $hotel_id = I("get.id");
+        $hotelInfo = M("hotel")->where("hotel_id=".$hotel_id)->find();
+        $this->assign("hotelInfo",$hotelInfo);
+        $this->display("detailaddform");
+    }
+
+    public function hotelDetailAdd(){
+        $addInfo = I("post.");
+        $res = M("hotel_detail")->add($addInfo);
+        if($res){
+            redirect(__CONTROLLER__."/hotelDetailShow/id/".$addInfo["hotel_id"]);
+        }else{
+            redirect(__CONTROLLER__."/hotelDetailAddForm/id/".$addInfo["hotel_id"]);
+        }
+    }
+
+    /**
+     * 酒店套餐信息修改
+     */
+    public function hotelDetailEditForm(){
+        $detailId = I("get.id");
+        $detailInfo = M("hotel_detail")->where("hotel_detail_id=".$detailId)->find();
+//        var_dump($detailInfo);exit;
+        $hotelInfo = M("hotel")->where("hotel_id=".$detailInfo["hotel_id"])->find();
+        $this->assign("detailInfo",$detailInfo);
+        $this->assign("hotelInfo",$hotelInfo);
+        $this->display("detailEditForm");
+
+    }
+    public function hotelDetailEdit(){
+        $newInfo = I("post.");
+//        var_dump($newInfo);exit;
+        $hotelDetailId = $newInfo['id'];
+        $res = M("hotel_detail")->where("hotel_detail_id=".$hotelDetailId)->save($newInfo);
+        if($res){
+            redirect(__CONTROLLER__."/hotelDetailShow/id/".$newInfo["hotel_id"]);
+        }else{
+            redirect(__CONTROLLER__."/hotelDetailEditForm/id/".$hotelDetailId);
+        }
+    }
+
+    /**
+     * 酒店套餐删除
+     */
+    public function hotelDetailDel(){
+        $detailId = I("get.id");
+        $hotelId = M("hotel_detail")->field("hotel_id")->where("hotel_detail_id=".$detailId)->find();
+//        var_dump($hotelId);exit;
+        $res = M("hotel_detail")->where("hotel_detail_id=".$detailId)->delete();
+        if($res){
+            redirect(__CONTROLLER__."/hotelDetailShow/id/".$hotelId["hotel_id"]);
+        }else{
+            $this->error("删除失败！");
         }
     }
 

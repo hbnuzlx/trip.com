@@ -105,7 +105,7 @@
 
                     酒店管理
 
-                    <small>修改酒店图片</small>
+                    <small>添加酒店套餐</small>
 
                 </h3>
 
@@ -115,7 +115,7 @@
 
                         <i class="icon-bookmark-empty"></i>
 
-                        <a href="__CONTROLLER__/index">酒店管理</a>
+                        <a href="index.html">酒店管理</a>
 
                         <span class="icon-angle-right"></span>
 
@@ -123,7 +123,7 @@
 
                     <li>
 
-                        <a href="#">{$info.hotel_name}</a>
+                        <a href="#">{$hotelInfo.hotel_name}</a>
 
                         <span class="icon-angle-right"></span>
 
@@ -131,7 +131,9 @@
 
                     <li>
 
-                        <a href="#">修改图片</a>
+                        <a href="#">添加套餐</a>
+
+                        <span class="icon-angle-right"></span>
 
                     </li>
                 </ul>
@@ -158,7 +160,7 @@
 
                             <i class="icon-reorder"></i>
 
-                            <span class="hidden-480">酒店图片</span>
+                            <span class="hidden-480">套餐信息</span>
 
                         </div>
 
@@ -175,43 +177,59 @@
 
                                     <!-- BEGIN FORM-->
 
-                                    <form action="__CONTROLLER__/picAdd" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <form action="__CONTROLLER__/hotelDetailAdd" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <input type="hidden" name="hotel_id" value="{$info.hotel_id}" />
+                                        <!--所属酒店ID-->
+                                        <input type="hidden" name="hotel_id" value="{$hotelInfo.hotel_id}" />
+                                        <input type="hidden" name="attr_id" value="{$hotelInfo.attr_id}" />
+                                        <input type="hidden" name="hotel_name" value="{$hotelInfo.hotel_name}" />
 
-                                        <!--酒店名称-->
+                                        <!--套餐名称-->
                                         <div class="control-group">
 
-                                            <label class="control-label">酒店名称：</label>
+                                            <label class="control-label">套餐规格：</label>
 
                                             <div class="controls">
 
-                                                <input type="text" name="hotel_name" disabled value="{$info.hotel_name}" class="m-wrap large" />
+                                                <input type="text" name="hotel_option" placeholder="套餐规格" class="m-wrap large" />
 
                                             </div>
 
                                         </div>
-
-                                        <!--原有图片-->
-                                        <foreach name="pics" item="pic">
-
-                                        <div style="border: 1px solid #ccc;display: inline-block;padding:10px;margin-right:10px;" class="control-group">
-
-                                            <img style="margin-bottom:10px;" width="200px" src="__PUBLIC__/Uploads/Hotel/{$pic.pic_path}/{$pic.pic_name}" /><br/>
-
-                                            <a href="__CONTROLLER__/picDel/pic_id/{$pic.hotel_pic_id}" class="btn red"> 删 除 </a>
-
-                                        </div>
-
-                                        </foreach>
 
                                         <!--图片上传-->
+                                        <!--<div class="control-group">-->
+
+                                            <!--<label class="control-label">图片上传：</label>-->
+                                            <!--<div class="controls">-->
+                                                <!--<input class="m-wrap large" name="pic" type="file" />-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--套餐价格-->
                                         <div class="control-group">
 
-                                            <label class="control-label">图片上传：</label>
+                                            <label class="control-label">套餐价格：</label>
+
                                             <div class="controls">
-                                                <input class="m-wrap large" name="pic" type="file" />
+
+                                                <input type="text" name="hotel_price" placeholder="价格" class="m-wrap large"/>
+
                                             </div>
+
+                                        </div>
+
+                                        <!--套餐销量-->
+                                        <div class="control-group">
+
+                                            <label class="control-label">套餐销量：</label>
+
+                                            <div class="controls">
+
+                                                <input type="text" name="hotel_sale" value="0" readonly placeholder="销量" class="m-wrap large" />
+
+                                            </div>
+
                                         </div>
 
                                         <div class="form-actions">

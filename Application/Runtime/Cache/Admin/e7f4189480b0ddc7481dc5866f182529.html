@@ -102,9 +102,9 @@
 
                 <h3 class="page-title">
 
-                    景点管理
+                    酒店管理
 
-                    <small>修改景点信息</small>
+                    <small>修改酒店图片</small>
 
                 </h3>
 
@@ -114,7 +114,7 @@
 
                         <i class="icon-bookmark-empty"></i>
 
-                        <a href="index.html">景点管理</a>
+                        <a href="/zjktrip.com/index.php/Admin/Hotel/index">酒店管理</a>
 
                         <span class="icon-angle-right"></span>
 
@@ -122,7 +122,15 @@
 
                     <li>
 
-                        <a href="#">修改景点</a>
+                        <a href="#"><?php echo ($info["hotel_name"]); ?></a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">修改图片</a>
 
                     </li>
                 </ul>
@@ -149,7 +157,7 @@
 
                             <i class="icon-reorder"></i>
 
-                            <span class="hidden-480">景点信息</span>
+                            <span class="hidden-480">酒店图片</span>
 
                         </div>
 
@@ -166,102 +174,39 @@
 
                                     <!-- BEGIN FORM-->
 
-                                    <form action="/zjktrip.com/index.php/Admin/View/attrEdit" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                        <input type="hidden" name="attr_id" value="<?php echo ($info["attr_id"]); ?>" />
+                                    <form action="/zjktrip.com/index.php/Admin/Hotel/picAdd" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <!--景点名称-->
+                                        <input type="hidden" name="hotel_id" value="<?php echo ($info["hotel_id"]); ?>" />
+
+                                        <!--酒店名称-->
                                         <div class="control-group">
 
-                                            <label class="control-label">景点名称：</label>
+                                            <label class="control-label">酒店名称：</label>
 
                                             <div class="controls">
 
-                                                <input type="text" name="attr_name" placeholder="景点名称" value="<?php echo ($info["attr_name"]); ?>" class="m-wrap large" />
+                                                <input type="text" name="hotel_name" disabled value="<?php echo ($info["hotel_name"]); ?>" class="m-wrap large" />
 
                                             </div>
 
                                         </div>
 
-                                        <!--景点折扣-->
+                                        <!--原有图片-->
+                                        <?php if(is_array($pics)): foreach($pics as $key=>$pic): ?><div style="border: 1px solid #ccc;display: inline-block;padding:10px;margin-right:10px;" class="control-group">
+
+                                            <img style="margin-bottom:10px;" width="200px" src="/zjktrip.com/Public/Uploads/Hotel/<?php echo ($pic["pic_path"]); ?>/<?php echo ($pic["pic_name"]); ?>" /><br/>
+
+                                            <a href="/zjktrip.com/index.php/Admin/Hotel/picDel/pic_id/<?php echo ($pic["hotel_pic_id"]); ?>" class="btn red"> 删 除 </a>
+
+                                        </div><?php endforeach; endif; ?>
+
+                                        <!--图片上传-->
                                         <div class="control-group">
 
-                                            <label class="control-label">折扣：</label>
-
+                                            <label class="control-label">图片上传：</label>
                                             <div class="controls">
-
-                                                <input type="text" name="attr_discount" placeholder="折扣" value="<?php echo ($info["attr_discount"]); ?>" class="m-wrap large" />
-
+                                                <input class="m-wrap large" name="pic" type="file" />
                                             </div>
-
-                                        </div>
-
-                                        <!--景点归属地-->
-                                        <div class="control-group">
-                                            <label class="control-label">归属地：</label>
-                                            <div class="controls">
-                                                <input type="text" name="attr_belong" placeholder="归属地" value="<?php echo ($info["attr_belong"]); ?>" class="m-wrap large"/>
-                                            </div>
-                                        </div>
-
-                                        <!--景点点击量-->
-                                        <div class="control-group">
-
-                                            <label class="control-label">点击量：</label>
-
-                                            <div class="controls">
-
-                                                <input type="text" name="attr_click" value="0" readonly placeholder="点击量"  value="<?php echo ($info["attr_click"]); ?>" class="m-wrap large" />
-
-                                            </div>
-
-                                        </div>
-
-                                        <!--景点状态-->
-                                        <div class="control-group">
-
-                                            <label class="control-label">景点状态：</label>
-
-                                            <div class="controls">
-
-                                                <label class="radio">
-
-                                                    <input type="radio" name="state" value="1" <?php if($info["state"] == 1 ): ?>checked<?php endif; ?> />
-
-                                                    促销中
-
-                                                </label>
-
-                                                <label class="radio">
-
-                                                    <input type="radio" name="state" value="2"  <?php if($info["state"] == 2 ): ?>checked<?php endif; ?> />
-
-                                                    新上架
-
-                                                </label>
-
-                                                <label class="radio">
-
-                                                    <input type="radio" name="state" value="3" <?php if($info["state"] == 3 ): ?>checked<?php endif; ?> />
-
-                                                    暂不开放
-
-                                                </label>
-
-                                            </div>
-
-                                        </div>
-
-                                        <!--景点描述-->
-                                        <div class="control-group">
-
-                                            <label class="control-label">景点描述：</label>
-
-                                            <div class="controls">
-
-                                                <textarea name="attr_des" class="large m-wrap" rows="7" placeholder="景点描述..." ><?php echo ($info["attr_des"]); ?></textarea>
-
-                                            </div>
-
                                         </div>
 
                                         <div class="form-actions">

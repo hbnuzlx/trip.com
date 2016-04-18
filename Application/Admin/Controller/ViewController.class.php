@@ -131,7 +131,7 @@ class ViewController extends Controller{
         if($res){//数据库删除图片记录成功后  删除服务器端文件
             @unlink($file);
 //            redirect("/trip.com/index.php/admin/view/picEditForm/id/{$picInfo['attr_id']}");
-            redirect("index");
+            redirect(__CONTROLLER__."/picEditForm/id/".$picInfo['attr_id']);
         }
     }
     //添加图片

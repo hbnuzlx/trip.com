@@ -171,14 +171,14 @@
                             <td class="hidden-480"><?php echo ($hotel['hotel_addr']); ?></td>
                             <td class="hidden-480">
                                 <?php if(($hotel["pic"] == 1)): ?><span>暂无图片</span>
-                                    <?php else: ?><img width="150px" src="/zjktrip.com/Public/Uploads/<?php echo ($hotel["pic"]); ?>"/><?php endif; ?>
+                                    <?php else: ?><img width="150px" src="/zjktrip.com/Public/Uploads/Hotel/<?php echo ($hotel["pic"]); ?>"/><?php endif; ?>
                             </td>
                             <td class="hidden-480"><?php echo ($hotel['hotel_scan']); ?></td>
                             <td class="hidden-480"><?php echo ($hotel["create_time"]); ?></td>
                             <td class="hidden-480">
                                 <a class="btn green" href="/zjktrip.com/index.php/Admin/Hotel/hotelEditForm/id/<?php echo ($hotel["hotel_id"]); ?>">修改</a>
                                 <a class="btn purple" href="/zjktrip.com/index.php/Admin/Hotel/picEditForm/id/<?php echo ($hotel["hotel_id"]); ?>">改图</a>
-                                <a class="btn blue" href="/zjktrip.com/index.php/Admin/Hotel/detailAddForm/id/<?php echo ($hotel["hotel_id"]); ?>">添加套餐</a>
+                                <a class="btn blue" href="/zjktrip.com/index.php/Admin/Hotel/hotelDetailAddForm/id/<?php echo ($hotel["hotel_id"]); ?>">添加套餐</a>
                             </td>
                         </tr><?php endforeach; endif; ?>
                 </tbody>

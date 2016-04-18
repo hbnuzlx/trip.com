@@ -175,7 +175,7 @@
                             <td class="hidden-480">
                                 <if condition="($hotel.pic eq 1)">
                                     <span>暂无图片</span>
-                                    <else /><img width="150px" src="__PUBLIC__/Uploads/{$hotel.pic}"/>
+                                    <else /><img width="150px" src="__PUBLIC__/Uploads/Hotel/{$hotel.pic}"/>
                                 </if>
                             </td>
                             <td class="hidden-480">{$hotel['hotel_scan']}</td>
@@ -183,7 +183,7 @@
                             <td class="hidden-480">
                                 <a class="btn green" href="__CONTROLLER__/hotelEditForm/id/{$hotel.hotel_id}">修改</a>
                                 <a class="btn purple" href="__CONTROLLER__/picEditForm/id/{$hotel.hotel_id}">改图</a>
-                                <a class="btn blue" href="__CONTROLLER__/detailAddForm/id/{$hotel.hotel_id}">添加套餐</a>
+                                <a class="btn blue" href="__CONTROLLER__/hotelDetailAddForm/id/{$hotel.hotel_id}">添加套餐</a>
                             </td>
                         </tr>
                     </foreach>

@@ -103,9 +103,9 @@
 
                 <h3 class="page-title">
 
-                    景点管理
+                    酒店管理
 
-                    <small>修改景点信息</small>
+                    <small>修改酒店套餐</small>
 
                 </h3>
 
@@ -115,7 +115,7 @@
 
                         <i class="icon-bookmark-empty"></i>
 
-                        <a href="index.html">景点管理</a>
+                        <a href="__CONTROLLER__/index">酒店管理</a>
 
                         <span class="icon-angle-right"></span>
 
@@ -123,7 +123,17 @@
 
                     <li>
 
-                        <a href="#">修改景点</a>
+                        <a href="#">{$hotelInfo.hotel_name}</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">修改套餐</a>
+
+                        <span class="icon-angle-right"></span>
 
                     </li>
                 </ul>
@@ -150,7 +160,7 @@
 
                             <i class="icon-reorder"></i>
 
-                            <span class="hidden-480">景点信息</span>
+                            <span class="hidden-480">套餐信息</span>
 
                         </div>
 
@@ -167,66 +177,78 @@
 
                                     <!-- BEGIN FORM-->
 
-                                    <form action="__CONTROLLER__/attrEdit" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                        <input type="hidden" name="attr_id" value="{$info.attr_id}" />
+                                    <form action="__CONTROLLER__/hotelDetailEdit" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <!--景点名称-->
+                                        <!--所属酒店ID-->
+                                        <input type="hidden" name="id" value="{$detailInfo.hotel_detail_id}" />
+                                        <input type="hidden" name="hotel_id" value="{$detailInfo.hotel_id}" />
+
+                                        <!--套餐名称-->
                                         <div class="control-group">
 
-                                            <label class="control-label">景点名称：</label>
+                                            <label class="control-label">套餐规格：</label>
 
                                             <div class="controls">
 
-                                                <input type="text" name="attr_name" placeholder="景点名称" value="{$info.attr_name}" class="m-wrap large" />
+                                                <input type="text" name="hotel_option" value="{$detailInfo.hotel_option}" placeholder="套餐规格" class="m-wrap large" />
 
                                             </div>
 
                                         </div>
 
-                                        <!--景点折扣-->
+                                        <!--图片上传-->
+                                        <!--<div class="control-group">-->
+
+                                            <!--<label class="control-label">图片上传：</label>-->
+                                            <!--<div class="controls">-->
+                                                <!--<input class="m-wrap large" name="pic" type="file" />-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--套餐价格-->
                                         <div class="control-group">
 
-                                            <label class="control-label">折扣：</label>
+                                            <label class="control-label">套餐价格：</label>
 
                                             <div class="controls">
 
-                                                <input type="text" name="attr_discount" placeholder="折扣" value="{$info.attr_discount}" class="m-wrap large" />
+                                                <input type="text" name="hotel_price" value="{$detailInfo.hotel_price}" placeholder="价格" class="m-wrap large"/>
 
                                             </div>
 
                                         </div>
 
-                                        <!--景点归属地-->
-                                        <div class="control-group">
-                                            <label class="control-label">归属地：</label>
-                                            <div class="controls">
-                                                <input type="text" name="attr_belong" placeholder="归属地" value="{$info.attr_belong}" class="m-wrap large"/>
-                                            </div>
-                                        </div>
-
-                                        <!--景点点击量-->
+                                        <!--套餐销量-->
                                         <div class="control-group">
 
-                                            <label class="control-label">点击量：</label>
+                                            <label class="control-label">套餐销量：</label>
 
                                             <div class="controls">
 
-                                                <input type="text" name="attr_click" value="0" readonly placeholder="点击量"  value="{$info.attr_click}" class="m-wrap large" />
+                                                <input type="text" name="hotel_sale" value="0" value="{$detailInfo.hotel_sale}" readonly placeholder="销量" class="m-wrap large" />
 
                                             </div>
 
                                         </div>
 
-                                        <!--景点状态-->
+                                        <!--套餐状态-->
                                         <div class="control-group">
 
-                                            <label class="control-label">景点状态：</label>
+                                            <label class="control-label">套餐状态：</label>
 
                                             <div class="controls">
 
                                                 <label class="radio">
 
-                                                    <input type="radio" name="state" value="1" <if condition="$info.state eq 1 "> checked </if> />
+                                                    <input type="radio" disabled name="state" <if condition="$hotelInfo.hotel_state eq 1"> checked </if> value="1" />
+
+                                                    在售中
+
+                                                </label>
+
+                                                <label class="radio">
+
+                                                    <input type="radio" disabled name="state" <if condition="$hotelInfo.hotel_state eq 2"> checked </if>  value="2" checked />
 
                                                     促销中
 
@@ -234,32 +256,19 @@
 
                                                 <label class="radio">
 
-                                                    <input type="radio" name="state" value="2"  <if condition="$info.state eq 2 "> checked </if> />
+                                                    <input type="radio" disabled name="state" <if condition="$hotelInfo.hotel_state eq 3"> checked </if>  value="3" />
 
-                                                    新上架
+                                                    已下架
 
                                                 </label>
 
                                                 <label class="radio">
 
-                                                    <input type="radio" name="state" value="3" <if condition="$info.state eq 3 "> checked </if> />
+                                                    <input type="radio" disabled name="state" <if condition="$hotelInfo.hotel_state eq 4"> checked </if>  value="3" />
 
-                                                    暂不开放
+                                                    已售空
 
                                                 </label>
-
-                                            </div>
-
-                                        </div>
-
-                                        <!--景点描述-->
-                                        <div class="control-group">
-
-                                            <label class="control-label">景点描述：</label>
-
-                                            <div class="controls">
-
-                                                <textarea name="attr_des" class="large m-wrap" rows="7" placeholder="景点描述..." >{$info.attr_des}</textarea>
 
                                             </div>
 
