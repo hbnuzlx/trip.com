@@ -1,0 +1,13 @@
+/*2011-11-28*/
+.tq_div_main{float:none;BACKGROUND:transparent none repeat scroll 0% 0%;color:#000000;font-size:12px;line-height:14px;PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;border:0px solid #d35555;margin:0px 0px 0px 0px;overflow:hidden;FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, "Bitstream Vera Sans",sans-serif;word-break:break-all;text-align:left;position:static;z-index:8000;}
+#tq_float_container div{float:none;text-indent:0px;BACKGROUND:transparent none repeat scroll 0% 0%;color:#000000;font-size:12px;line-height:14px;PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;border:0px solid #d35555;margin:0px 0px 0px 0px;overflow:hidden;FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, "Bitstream Vera Sans",sans-serif;word-break:break-all;text-align:left;position:static;z-index:8000;}
+#tq_float_container table{text-indent:0px;BACKGROUND:transparent none repeat scroll 0% 0%;color:#000000;font-size:12px;line-height:14px;PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;border:0px solid #d35555;margin:0px 0px 0px 0px;overflow:hidden;FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, "Bitstream Vera Sans",sans-serif;word-break:break-all;text-align:left;position:static;z-index:8000;}
+#tq_float_container tr{text-indent:0px;BACKGROUND:transparent none repeat scroll 0% 0%;color:#000000;font-size:12px;line-height:14px;PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;border:0px solid #d35555;margin:0px 0px 0px 0px;overflow:hidden;FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, "Bitstream Vera Sans",sans-serif;word-break:break-all;text-align:left;position:static;z-index:8000;}
+#tq_float_container td{text-indent:0px;BACKGROUND:transparent none repeat scroll 0% 0%;color:#000000;font-size:12px;line-height:14px;PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px;border:0px solid #d35555;margin:0px 0px 0px 0px;overflow:hidden;FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, "Bitstream Vera Sans",sans-serif;word-break:break-all;text-align:left;position:static;z-index:8000;}
+#tq_float_container img{float:none;text-indent:0px;vertical-align:top;}
+
+#tq_float_container .tq_float_on{color:#FF0F0F}
+#tq_float_container .tq_float_off{color:#333333}
+#tq_float_container .tq_float_busy{color:#FF0F0F}
+#tq_float_container .tq_float_leave{color:#FF0F0F}
+#tq_float_title{display:none}

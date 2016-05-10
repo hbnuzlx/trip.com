@@ -21,6 +21,7 @@ class UserController extends Controller{
      *用户登录方法
      */
     public function login(){
+        session_start();
         $username = I("post.user_name");//;
         $password = I("post.password");
         $send = array();
@@ -28,8 +29,9 @@ class UserController extends Controller{
         if($user){
             if(md5($password) == $user['password']){//$user['password']){e10adc3949ba59abbe56e057f20f883e
                 //if($password == "123456"){
-                //$this->session("user_name",$username);
-                session("user_name",$username);
+//                $this->session("user_name",$username);
+                session("user",$user);
+//                var_dump($_SESSION);exit;
                 $this->ajaxReturn(array("status"=>true,"msg"=>"登陆成功！"),'json');
 
             }else{
@@ -37,7 +39,7 @@ class UserController extends Controller{
                 return false;
             }
         }else{
-            $this->ajaxReturn(array("status"=>false,"msg"=>"用户不存在！"),'json');
+            $this->ajaxReturn(array("status"=>false,"msg"=>"用户".$username."不存在！"),'json');
             return false;
         }
     }

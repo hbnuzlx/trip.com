@@ -67,7 +67,7 @@
                 <div class="loginadimg" style="background:url('__PUBLIC__/themes/images/v3/olympic.jpg') center center no-repeat"></div>
             </div>
 			
-			<form name="loginForm" id="login_form" method="post" action="login/ldo">
+			<form name="loginForm" id="login_form" method="post" action="__CONTROLLER__/login">
 				<h2>登录张家口旅游网</h2>
 				<div class="div_user"><span></span><input  name="user_name" id="user_name" class="username" type="text" placeholder="用户名" /></div>
 				<div class="div_pw"><span></span><input name="password" class="pw" type="password" placeholder="密码" /></div>
@@ -167,7 +167,7 @@
 
 			//我的------------------------
 			$.ajax({
-				url: "/trip.com/index.php/Home/Index/login",    //请求的url地址
+				url: "__MODULE__/user/login",    //请求的url地址
 				dataType: "json",   //返回格式为json
 				async: true, //请求是否异步，默认为异步，这也是ajax重要特性
 				data: { "user_name": user_name,"password":password },    //参数值

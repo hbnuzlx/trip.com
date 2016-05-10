@@ -41,6 +41,11 @@ class HotelController extends Controller {
         $hotel_id = I("get.id");
         $hotel = M("hotel")->where("hotel_id=".$hotel_id)->find();
         $hotel_detail = M("hotel_detail")->where("hotel_id=".$hotel_id)->select();
+        foreach($hotel_detail as $key=>$val){
+//            $hotelDetail[$k]["hotel_content"] = explode("；", trim($hotel["hotel_content"],"；"));
+            $hotel_detail[$key]["hotel_content"] = explode("；",trim($val["hotel_content"],"；"));
+        }
+//        var_dump($hotel_detail);exit;
         $state = array(1=>"在售中",2=>"促销中",3=>"已下架",4=>"已住满");
         $this->assign("hotelDetail",$hotel_detail);
         $this->assign("hotel",$hotel);

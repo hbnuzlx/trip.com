@@ -1,0 +1,314 @@
+<extend name="Public:public" />
+<block name="main-content">
+
+    <div class="warp tour-body clearfix">
+        <div class="crumbs">
+            您所在位置：<a href="__MODULE__/index/index" target="_blank">网站首页</a> &gt; <span>【{$tripInfo.attr_name}】</span>
+        </div>
+        <div class="tour-base-model mt10">
+            <div class="top-tit yh">
+                <font color="">【{$tripInfo.attr_name}】</font>
+                <font color="">风光无限 云的故乡,花的世界,鸟的天堂</font>
+            </div>
+            <script>
+                $("title").html("【{$tripInfo.attr_name}】- 张家口旅游网");
+            </script>
+            <!--<div class="tours-sub-info clearfix"><span>编号1079611</span> 本产品由万众国旅发布</div>-->
+            <div class="tour-main clearfix">
+                <div class="tour-left">
+                    <div class="tour-img-box">
+                        <div class="img-rolling-box">
+                            <ul>
+                                <li id="bigImg">
+                                <foreach item='attrPic' name='tripInfo.pic'>
+                                    <img src="__PUBLIC__/Uploads/{$attrPic.pic_path}/{$attrPic.pic_name}" width="500" height="280">
+                                </foreach>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="img-nav">
+                            <div class="img-thumbs">
+                                <div class="prev prevStop"></div>
+                                <div class="tempWrap" style="overflow:hidden; position:relative; width:424px">
+                                    <ul style="width: 424px; left: 0px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
+                                        <foreach item='attrPic' name='tripInfo.pic'>
+
+                                            <li style="float: left; width: 99px;"><a href="javascript:;"><img src="__PUBLIC__/Uploads/{$attrPic.pic_path}/{$attrPic.pic_name}" width="90" height="52"></a></li>
+                                        </foreach>
+                                        <!--<li style="float: left; width: 99px;"><a href="javascript:;"><img src="__PUBLIC__/detail/ZHOUBIANCHENGSHI_224620506.jpg" width="90" height="52"></a></li>-->
+
+                                        <!--<li style="float: left; width: 99px;"><a href="javascript:;"><img src="__PUBLIC__/detail/ZHOUBIANCHENGSHI_951395854.jpg" width="90" height="52"></a></li>-->
+
+                                        <!--<li style="float: left; width: 99px;"><a href="javascript:;"><img src="__PUBLIC__/detail/ZHOUBIANCHENGSHI_361344283.jpg" width="90" height="52"></a></li>-->
+
+                                    </ul>
+                                </div>
+                                <div class="next nextStop"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-right yh">
+                    <div class="new-tour-price">
+                        <p>特 惠 价：￥<span><em id="price" class="yh">{$minPrice}起</em></span></p>
+                    </div>
+                    <div class="new-tour-b">
+                        <div class="tour-b-item clearfix">
+                            <label>线路编号：</label>
+                            <div class="content">
+                                <div class="tour-base">
+                                    <!--<li><label>行程天数：</label>2天</li>-->
+                                    <li><label>往返交通：</label>大巴</li>
+                                </div>
+                                <span>1079611</span>
+                            </div>
+                        </div>
+                        <div class="tour-b-item clearfix">
+                            <label>线路类型：</label>
+                            <div class="content">
+                                <div class="promoteinfo">
+                                    <span class="type">全程跟团</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-b-item clearfix">
+                            <label>服务：</label>
+                            <div class="content">
+                                <div class="vserver">
+                                    <ul>
+                                        <li class="v1">免费上门</li>
+                                        <li class="v2">24小时专属客服</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-b-item clearfix">
+                            <label>选择套餐：</label>
+                            <div class="content">
+                                <foreach item='combo' name='tripInfo.detail'>
+                                    <input type="radio" class="combo" name='combo' <if condition="$minPrice eq $combo['attr_price']">checked</if> data="{$combo.attr_price}" />&nbsp;&nbsp;{$combo.combo_name}<br/>
+                                </foreach>
+                                <script>
+                                    $(".combo").click(function () {
+                                        var data = $(this).attr("data");
+                                        $("#price").html($(this).attr("data"));
+                                        $("#attr_price").attr("value", data);
+//                                                    alert($(this).attr("data"));
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="tour-b-item clearfix">
+                            <label>签约服务：</label>
+                            <div class="content">
+                                <div class="service">
+                                    <ul>
+                                        <!-- <li>1. 门市报名即送（V旅程）旅游三宝及VIP会员卡 <a target="_blank" href="">查看门市地图</a></li>
+                                        <li>2. <a target="_blank" href="#">上门签约</a> （为节省您宝贵时间我公司提供上门签约服务）</li>
+                                        <li>3. <a target="_blank" href="#">网上签约</a> （网上预订可直接在线签署旅游合同，电子合同与纸质合同具有同等法律效力）</li> -->
+                                        <li>1. 门市报名即送保险；</li>
+                                        <li>2. 上门签约（为节省您宝贵时间我公司提供上门签约服务）；</li>
+                                        <li>3. 电子签约（电子合同与纸质合同具有同等法律效力）。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="post" action="__CONTROLLER__/orderConfirm" id="subform">
+                        <input type="hidden" name="goods_price" id='attr_price' value="{$minPrice}">
+                        <input type="hidden" name="goods_id" value="{$tripInfo.attr_id}"> 
+                        <input type="hidden" name="goods_type" value="1">
+                        <div class="order_mess clearfix">
+                            <ul>
+                                <li>
+                                    <label>出发日期：</label>
+                                    <div class="parameter">
+                                        <input type="date" name="go_time">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>出游人数：</label>
+                                    <div class="parameter">
+                                        <div class="spinner">
+                                            <input type="text" name="adult">
+                                        </div> 成人&nbsp;&nbsp;
+                                        <div class="spinner">
+                                            <input type="text" name="child">									
+                                        </div> 儿童
+                                    </div>
+                                </li>
+                            </ul>
+                            <!--<div id="yuding" class="order_btn" onclick="sub_f()">立刻预订</div>-->
+                            <input type="submit" id='yuding' class="order_btn" value='立刻预订' />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour-model">
+
+
+            <div class="tour-model-left">
+                <div class="service-code">
+                    <img src="__PUBLIC__/detail/service_code.jpg" width="158" height="158" />
+                    <p class="mt10">“扫一扫”二维码分享给朋友</p>
+                </div>
+            </div>
+            <div class="tour-model-right">
+                <div class="tour-model-box">
+                    <div class="pkg-detail-tab yh clearfix" style="position: static; top: 0px; left: 592.5px;">
+                        <ul>
+                            <li class="current"><a href="javascript:void(0);" scroll="#pdt_features">景点描述</a></li>
+                            <li class=""><a href="javascript:void(0);" scroll="#fysm">费用说明</a></li>
+                            <!-- <li><a href="javascript:void(0);" scroll="#zfxm">自费项目</a></li> -->
+                            <li class=""><a href="javascript:void(0);" scroll="#ctxz">参团须知</a></li>
+                            <!-- <li><a href="javascript:void(0);" scroll="#bsts">本社提示</a></li> -->
+                            <li class=""><a href="javascript:void(0);" scroll="#wxts">温馨提示</a></li>
+                            <li class=""><a href="javascript:void(0);" scroll="#ydxz">预定须知</a></li>
+                        </ul>
+                        <div class="pkg-detail-btn">
+                            电话咨询：400-600-4106
+                            <a href="javascript:void(0)" name="submit" onclick="sub_f()">预定</a>
+                        </div>
+                    </div>
+                    <div class="under-tab">
+                        <div class="detail_content" id="pdt_features">
+                            <h3 class="resource_title">
+                                <i class="icon icon_features"></i>
+                                <p>景点描述</p>
+                            </h3>
+                            <div class="pdt_info_box">
+                                <div class="pdt_features">
+                                    <div>{$tripInfo.attr_des}
+                                    </div>
+                                    <div>
+                                        &nbsp;</div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail_content" id="fysm">
+                            <h3 class="resource_title">
+                                <i class="icon icon_cost"></i>
+                                <p>费用说明</p>
+                            </h3>
+                            <div class="pdt_info_box">
+                                <div class="pdt_other">
+                                    <div class="fee_title">费用包含</div>
+
+                                    <div class="fee_content">
+
+                                        <foreach name="tripInfo.detail.0.attr_con" item="con" key="k">
+                                            <div>{$k+1}、{$con}</div>
+                                        </foreach>
+
+                                        <!--                                                                    <div>1、住宿：县城标准双人间 &nbsp;</div>
+                                                                                                            <div>2、用餐：3正1早：正餐30元/人，十人一桌，十菜一汤，100元/人</div>
+                                                                                                            <div>3、景点门票</div>
+                                                                                                            <div>4、交通：全程空调车往返；</div>-->
+                                        <div>&nbsp;</div>
+                                    </div>
+                                    <div class="fee_title">费用不包含</div>
+                                    <div class="fee_content last">
+                                        <div>1、单房差</div>
+                                        <div>2、个人消费</div>
+                                        <div>3、推荐自愿消费</div>
+                                        <div>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="detail_content" id="ctxz">
+                            <h3 class="resource_title">
+                                <i class="icon icon_notice"></i>
+                                <p>参团须知</p>
+                            </h3>
+                            <div class="pdt_info_box">
+                                <div class="pdt_other">
+                                    1、为了确保您能够按时出行，产品确认后请在24小时内签署旅游合同并付款，同时请按要求尽快提供出游所需的材料及信息；<br>
+                                    2、团队报价按2人入住1间房核算，如出现单男单女，则尽量安排与其他同性别团友拼房或加床；若客人无需安排或旅行社无法安排，请补齐单房差以享用单人房间；<br>
+                                    3、团队机票一经开出，不得更改，不得签转，不得退票；另飞行时间、车程时间、船程时间以当日实际所用时间为准；<br>
+                                    4、如遇国家或航空公司政策性调整机票、燃油税价格，按调整后的实际价格结算；<br>
+                                    5、当地购物时请慎重考虑，把握好质量与价格，请务必保存好所有的购物票据，若购物点提供发票，请索要；<br>
+                                    6、为了不耽误您的行程，国际航班请您在飞机起飞前180分钟到达机场办理登机及相关手续；如涉及国内段行程，请您在航班起飞前60分钟到达机场办理登机手续；<br>
+                                    7、出团通知最晚于出团前1个工作日发送，若能提前确定，我们将会第一时间通知您；<br>
+                                    8、此团收客人数不足16人时，本公司会于出发前7个工作日通知取消该行程，您可以选择延期出发、更改线路出行，或退回团款；<br>
+                                    9、团队游览中不允许擅自离团（自由活动除外），如有不便敬请谅解；<br>
+                                    10、如您被法院列入全国失信被执行人名单，您可能无法正常出游，您可于报名前自行核实，避免不必要的损失。 
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="detail_content" id="wxts">
+                            <h3 class="resource_title">
+                                <i class="icon icon_tips"></i>
+                                <p>温馨提示</p>
+                            </h3>
+                            <div class="pdt_info_box">
+                                <div class="pdt_other">
+                                    <div>
+                                        1、着装：休闲装、最好是运动服、运动鞋；</div>
+                                    <div>
+                                        2、出行前应带好有效证件、衣物、常用药、旅游行程中注意安全；</div>
+                                    <div>
+                                        3、游览期间安全第一，请听从导游的统一安排，不要单独行动。登山时做到走路不看景、看景不走路。&nbsp;</div>
+                                    <div>
+                                        4、旅游摄影时，请注意安全，不要到有危险的地区拍摄或攀爬。&nbsp;</div>
+                                    <div>
+                                        5、游客在行程中自理用餐时应注意卫生，在自由活动时应注意安全，同时应照看好儿童和老人。</div>
+                                    <div>
+                                        6、旅游中贵重物品随身携带，请自身注意保管，切勿离手，如遗失、损坏旅行社不承担责任。</div>
+                                    <div>
+                                        7、登山时做到走路不看景、看景不走路;玩水时一定要按规定穿戴救身衣。</div>
+                                    <div>
+                                        8、在不减少景点的情况下，我社有权对行程进行调整；</div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail_content" id="ydxz">
+                            <h3 class="resource_title">
+                                <i class="icon icon_notice_y"></i>
+                                <p>预定须知</p>
+                            </h3>
+                            <div class="pdt_info_box">
+                                <div class="pdt_notice">
+                                    <p class="notice-img"><img src="__PUBLIC__/detail/notice_img.jpg"></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tour-model-box mt20">
+                    <div class="tour-reco clearfix">
+                        <h2 class="yh">附近酒店推荐</h2>
+                        <ul class="clearfix">
+                            <foreach name='hotelInfo' item='hotel'>
+                                <li>
+                                    <a target="_blank" href="__MODULE__/hotel/hotelDetail/hotelId/{$hotel.hotel_id}">
+
+                                        <img src="__PUBLIC__/Uploads/Hotel/{$hotel.pic.pic_path}/{$hotel.pic.pic_name}" width="212" height="120">
+
+                                    </a>
+                                    <p class="pdt-name"><a target="_blank" href="__MODULE__/hotel/hotelDetail/hotelId/{$hotel.hotel_id}"><span>{$hotel.hotel_name}</span></a></p>
+                                    <p class="price">¥<span>{$hotel.hotel_price}</span>起</p>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>

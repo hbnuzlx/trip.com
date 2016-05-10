@@ -173,9 +173,13 @@
                         <tr>
                             <td>{$hotel.hotel_id}-{$hotelDetail.hotel_detail_id}</td>
                             <td>{$hotelDetail.hotel_option}</td>
-                            <td class="hidden-480">{$hotelDetail.hotel_price}.00元</td>
+                            <td class="hidden-480">{$hotelDetail.hotel_price}元</td>
                             <td class="hidden-480">{$hotelDetail.hotel_sale}</td>
-                            <td class="hidden-480">{$hotel.hotel_des}</td>
+                            <td class="hidden-480">
+                        <foreach name="hotelDetail.hotel_content" key="key" item="hotel_con">
+                                {$key+1}、{$hotel_con}<br/>
+                        </foreach>
+                        </td>
                             <td class="hidden-480">
                                 <a class="btn green" href="__CONTROLLER__/hotelDetailEditForm/id/{$hotelDetail.hotel_detail_id}">修改</a>
                                 <a class="btn purple" href="__CONTROLLER__/hotelDetailDel/id/{$hotelDetail.hotel_detail_id}">删除</a>
