@@ -13,7 +13,9 @@ class SearchController extends Controller{
     public function index() {
         $keyword = i("get.keyword");
         $res_attr = M("attraction")->where("attr_name like '%".$keyword."%'")->select();
+        $attrIds = array();
         foreach($res_attr as $key=>$attr){
+            $attrIds[]=$attr["attr_id"];
             //获取景点图片
             $pic = M("attr_pics")->where("attr_id=".$attr["attr_id"])->find();
             $res_attr[$key]["pic"]=$pic;
@@ -24,6 +26,12 @@ class SearchController extends Controller{
                 $prices[]=$attrs["attr_price"];
             }
             $res_attr[$key]["price"] = min($prices);
+        }
+        var_dump($res_attr);
+        var_dump($attrIds);exit;
+        //取到搜索的景点的对应酒店
+        foreach($attrIds as $Idkey=>$id){
+            
         }
         $res_hotel = M("hotel")->where("hotel_name like '%".$keyword."%'")->select();
 //        var_dump($res_attr);exit;

@@ -738,7 +738,7 @@
 
             </div>
 
-            <div class="guess-like mt20">
+            <div class="guess-like mt20" style="display:none;">
                 <h2 class="yh">猜你喜欢</h2>
                 <ul>
 
@@ -887,6 +887,9 @@
                     <h2> 【景点搜索结果】 <span class="sun"><span style="color:#0000ff;"><strong><span style="line-height: 18px; font-family: Hiragino Sans GB,Tahoma,arial,宋体,sans-serif; background-color: rgb(250, 250, 250);">精选VIP客户的意见和反馈，特别推荐性价比最高的产品给您！从品质入手，住宿、行程的设置等因素都是一流的！！</span></strong></span></span></h2>
                     <div class="list-view">
                         <ul>
+                            <if condition="attr eq null" >
+                                <span>对不起，没有相关搜索结果！</span>
+                                <else />
                             <foreach name="attractions" item="attr" >
                             <li class="clearfix">
                                 <div class="photo">
@@ -914,6 +917,7 @@
                                 </div>
                             </li>
                             </foreach>
+                            </if>
                         </ul>
                     </div>
                 </div>
