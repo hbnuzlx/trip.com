@@ -38,7 +38,8 @@ class UserController extends Controller{
         $password = I("post.password");
         $send = array();
         $user = M("user")->where("user_name='".$username."' or nick_name='".$username."'")->find();
-        if($user && $user['user_cat']==1){
+        var_dump($user);exit;
+        if($user && $user['user_cat']!=4){
             if(md5($password) == $user['password']){
                 //if($password == "123456"){
                 //$this->session("user_name",$username);
