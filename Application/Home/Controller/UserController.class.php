@@ -63,14 +63,21 @@ class UserController extends Controller{
 
     public  function regist(){
         $user = I("post.");
+//        var_dump($user);exit;
+        $res = M("user")->where("user_name='".$user["user_name"]."'")->find();
+        if($res){
+            $this->ajaxReturn(array("status"=>false,"msg"=>"用户名已存在！"),'json');
+            return false;
+        }
         $user["password"] = md5($user['password']);
         $user['create_time'] = time();
         $add_user = M("user");
-        if($add_user->add($user)){
-            $this->success("恭喜您，注册成功！","loginForm");
-        }else{
-            $this->error("注册失败！");
-        }
+        $this->ajaxReturn(array("status"=>false,"msg"=>"Hello"),'json');
+//        if($add_user->add($user)){
+//            $this->success("恭喜您，注册成功！","loginForm");
+//        }else{
+//            $this->error("注册失败！");
+//        }
     }
 }
 
