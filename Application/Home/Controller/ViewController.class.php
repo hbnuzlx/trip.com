@@ -42,7 +42,8 @@ class ViewController extends Controller {
             $pic = M("hotel_pics")->where("hotel_id=".$hotel["hotel_id"])->find();
             $hotels[$hotel_k]["pic"]=$pic;
         }
-//        var_dump($hotels);exit;
+//	echo "<pre>";
+//        var_dump($hotels);//exit;
 //        var_dump($attrInfo["detail"]);exit;
         $this->assign("tripInfo",$attrInfo);
         $this->assign("hotelInfo",$hotels);

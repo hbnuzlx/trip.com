@@ -204,13 +204,17 @@ class ViewController extends Controller{
 
     //套餐修改
     public function detailEditForm(){
-        $combo_id = I("get.id");
-        $comboInfo = M('attr_detail')->where("id=".$combo_id)->find();
-        $attr_name=M("attraction")->where("attr_id = ".$comboInfo["attr_id"])->find();
-        $this->assign("attraction_name",$attr_name);
+        $combo_id   = I("get.id");
+        $comboInfo  = M('attr_detail')->where("id=".$combo_id)->find();
+        $attr_name  = M("attraction")->where("attr_id = ".$comboInfo["attr_id"])->find();
+//        echo "<pre>";var_dump($attr_name);
+	$this->assign("attraction_name",$attr_name);
+//        echo "<pre>";var_dump($comboInfo);exit;
         $this->assign("detailInfo",$comboInfo);
         $this->display("detailEditForm");
+//	$this->display();
     }
+
     public function attrDetailEdit(){
         $info = I("post.");
         $res = M("attr_detail")->where("id=".$info["id"])->save($info);
@@ -227,7 +231,3 @@ class ViewController extends Controller{
         $combo = M("attr_detail")->where("id=".$combo_id)->find();
         $res = M("attr_detail")->where("id=".$combo_id)->delete();
         if($res){
-            redirect(__CONTROLLER__."/attrDetailShow/id/".$combo["attr_id"]);
-        }
-    }
-}
